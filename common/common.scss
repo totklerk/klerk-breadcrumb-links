@@ -52,7 +52,8 @@
       }
     }
     .parent::before,
-    .current::before {
+    .current::before,
+    .first-level + .home::before {
       content: "\00a0 /";
     }
   }

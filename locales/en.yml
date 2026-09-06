@@ -5,6 +5,8 @@ en:
       display_on_mobile: Show breadcrumbs on mobile devices.
       sticky_under_header: Keep breadcrumbs visible at the top of the page when scrolling.
       show_in_admin: Show breadcrumbs on admin pages.
+      first_level_label: Optional label shown before the home breadcrumb (e.g. "Klerk"). Leave empty to hide it. Both this and "first level url" must be filled in.
+      first_level_url: Optional destination URL for the breadcrumb shown before the home breadcrumb (e.g. "https://www.klerk.ru/"). Leave empty to hide it.
       home_label: Label for the first breadcrumb link (e.g. "Home" or "Forum").
       home_url: Destination URL for the first breadcrumb link (e.g. "/" or "/categories").
       show_topic_title: Show the topic title as the last breadcrumb on topic pages.
