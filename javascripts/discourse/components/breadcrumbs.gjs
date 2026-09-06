@@ -116,6 +116,9 @@ export default class Breadcrumbs extends Component {
     }
 
     switch (true) {
+      case this.isTag:
+        return i18n("js.tagging.all_tags");
+
       case this.router.currentRouteName.includes("category") ||
         this.router.currentRouteName.includes("Category"):
         return this.parentCategoryName;
@@ -123,6 +126,18 @@ export default class Breadcrumbs extends Component {
       default:
         return null;
     }
+  }
+
+  get parentPageLink() {
+    if (this.isTopic) {
+      return this.topicCategoryLink;
+    }
+
+    if (this.isTag) {
+      return "/tags";
+    }
+
+    return this.parentCategoryLink ? `/c/${this.parentCategoryLink}` : null;
   }
 
   get grandParentPage() {
@@ -153,6 +168,18 @@ export default class Breadcrumbs extends Component {
     return this.parentCategory?.slug ?? null;
   }
 
+  get firstLevelLabel() {
+    return config.firstLevelLabel;
+  }
+
+  get firstLevelUrl() {
+    return config.firstLevelUrl;
+  }
+
+  get showFirstLevel() {
+    return Boolean(this.firstLevelLabel && this.firstLevelUrl);
+  }
+
   get homeIcon() {
     return config.homeIcon;
   }
@@ -172,6 +199,14 @@ export default class Breadcrumbs extends Component {
       <div class="breadcrumbs">
         <div class="breadcrumbs__container">
           <ul class="breadcrumbs__links">
+            {{#if this.showFirstLevel}}
+              <li class="first-level">
+                <a href="{{this.firstLevelUrl}}">
+                  {{this.firstLevelLabel}}
+                </a>
+              </li>
+            {{/if}}
+
             <li class="home">
               {{#if this.homePage}}
                 <svg
@@ -201,15 +236,9 @@ export default class Breadcrumbs extends Component {
 
             {{#if this.parentPage}}
               <li class="parent">
-                {{#if this.isTopic}}
-                  <a href="{{this.topicCategoryLink}}">
-                    {{this.parentPage}}
-                  </a>
-                {{else}}
-                  <a href="/c/{{this.parentCategoryLink}}">
-                    {{this.parentPage}}
-                  </a>
-                {{/if}}
+                <a href="{{this.parentPageLink}}">
+                  {{this.parentPage}}
+                </a>
               </li>
             {{/if}}
 

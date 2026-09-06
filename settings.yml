@@ -11,6 +11,12 @@ svg_icons:
   type: list
   list_type: compact
   default: arrow-left|house
+first_level_label:
+  type: string
+  default: ""
+first_level_url:
+  type: string
+  default: ""
 home_icon:
   type: string
   default: house
